@@ -1,0 +1,28 @@
+body{
+    background-color: #371B58;
+    color: white;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+}
+
+
+.main{
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.main button{
+    height: 4rem;
+    width: 4rem;
+    margin-top : 0.25rem;
+
+}
+
+.clicked{
+    background-color: #B4FF9F;
+    border-radius: 0;
+}
+
+.wrong{
+    background-color: red;
+}

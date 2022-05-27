@@ -1,0 +1,43 @@
+body{
+    background-color: #371B58;
+    color: white;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+}
+
+
+.main{
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.main button{
+    height: 4rem;
+    width: 4rem;
+    margin-top : 0.25rem;
+
+}
+
+.clicked{
+    background-color: #B4FF9F;
+    border-radius: 0;
+}
+
+.wrong{
+    background-color: red;
+}
+.g6{
+    background-color: #FF6B6B;
+    transition: 0.3s;
+    height: 5rem;
+    width: 10rem;
+    font-family: 'Montserrat', sans-serif;
+    font-size: large;
+    border-radius: 2rem;
+    margin-left: 1rem;
+    color: #371B58;
+}
+
+.g6:hover{
+    background-color: #FF8080;
+}
