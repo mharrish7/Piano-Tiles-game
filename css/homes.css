@@ -58,3 +58,14 @@ button{
     margin-top: 5rem;
     padding: 2rem;
 }
+
+.le{
+    background-color: #92B4EC;
+    margin-top: 1rem;
+    transition: 0.3s;
+}
+
+.le:hover{
+
+    background-color: #BDE6F1;
+}

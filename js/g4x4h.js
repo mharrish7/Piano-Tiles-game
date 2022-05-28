@@ -1,6 +1,6 @@
 
 
-var buttons = ['1','2','3','4'];
+var buttons = ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16'];
 var userpat = [];
 var gamepat = [];
 var level = 0;
@@ -11,7 +11,7 @@ var play = false;
 var name = "NoName";
 var score = -100;
 
-for(var i=1;i<5;i++){
+for(var i=1;i<17;i++){
     document.querySelector('.b'+ String(i)).disabled = true;
 }
 
@@ -19,7 +19,6 @@ function gamestart(){
     gamepattern();
     levelob.innerHTML = "Level : " + String(level);
 }
-
 document.querySelector('.namebut').addEventListener('click',function(){
     if(start == false){
         gamestart();
@@ -44,16 +43,15 @@ document.addEventListener('keypress',function(){
     if(start == false && play == true){
         gamestart();
         start = true;
-        for(var i=1;i<5;i++){
+        for(var i=1;i<17;i++){
             s = document.querySelector('.b' + String(i)).classList.remove('wrong');
             s = document.querySelector('.b' + String(i)).classList.remove('clicked');
         }
-        
     }
 })
 
 
-for(var i=1;i<5;i++){
+for(var i=1;i<17;i++){
     document.querySelector('.b'+ String(i)).addEventListener('click',function(){
         clickanim(this.getAttribute('class'));
         clickbut(this.innerHTML);
@@ -65,7 +63,7 @@ function gamepattern(){
 
     if(buttons.length <=0){
         console.log('end');
-        levelob.innerHTML = "You Won! press any key to restart, scored " + String(score) + " points";
+        levelob.innerHTML = "You Won! press any key to restart, scored " + String(score) + " points";;
         var keys = Object.keys(localStorage);
         if(keys.includes(name)){
             var value = parseInt(localStorage.getItem(name));
@@ -87,7 +85,7 @@ function gamepattern(){
     else{
     level++;
     score += 100;
-    for(var i=1;i<5;i++){
+    for(var i=1;i<17;i++){
         document.querySelector('.b'+ String(i)).disabled = true;
     }
     infoob.innerHTML = "Wait!";
@@ -119,7 +117,7 @@ function checkbut(but){
     if(but == gamepat.length - 1){
         
         setTimeout(function(){
-            for(var i=1;i<5;i++){
+            for(var i=1;i<17;i++){
                 document.querySelector('.b'+ String(i)).disabled = false;
             };
             infoob.innerHTML = "Now Play!";
@@ -130,6 +128,7 @@ function checkbut(but){
 }
 
 function clickbut(key){
+
     if(userpat.includes(key)){
         console.log('pressed before');
     }
@@ -138,26 +137,26 @@ function clickbut(key){
     var current = userpat.length - 1;
     console.log(userpat);
     console.log(gamepat);
-    if (gamepat.includes(userpat[current])){
-        if (userpat.length == gamepat.length){
+    if (userpat[current] == gamepat[current]){
+        if (userpat.length === gamepat.length){
             userpat = [];
             setTimeout(gamepattern(),1000);
         }
     }
     else{
-        console.log('wrong');
-        for(var i=1;i<5;i++){
+        for(var i=1;i<17;i++){
             document.querySelector('.b'+ String(i)).disabled = true;
         }
         document.querySelector('.b' + key).classList.add('wrong');
         for(but of gamepat){
             document.querySelector('.b' + but).classList.add('clicked');
         }
+        console.log('wrong');
         infoob.innerHTML = 'Wrong! press any key to restart, scored ' + String(score) + ' points' ;
         gamepat = [];
         userpat = [];
-        buttons = ['1','2','3','4'];
         start = false;
+        buttons = ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16'];
         var keys = Object.keys(localStorage);
         if(keys.includes(name)){
             var value = parseInt(localStorage.getItem(name));
@@ -172,7 +171,7 @@ function clickbut(key){
         score = -100;
         level = 0;
     }
-}
+    }
 }
 
 function clickanim(but){
@@ -180,5 +179,5 @@ function clickanim(but){
     c.classList.add('clicked');
     setTimeout( function(){
         c.classList.remove('clicked') 
-    },200);
+    },100);
 }

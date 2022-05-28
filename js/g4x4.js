@@ -7,14 +7,40 @@ var level = 0;
 var levelob = document.querySelector('.level');
 var infoob = document.querySelector('.info');
 var start = false;
+var play = false;
+var name = "NoName";
+var score = -100;
+
+for(var i=1;i<17;i++){
+    document.querySelector('.b'+ String(i)).disabled = true;
+}
 
 function gamestart(){
     gamepattern();
     levelob.innerHTML = "Level : " + String(level);
 }
+document.querySelector('.namebut').addEventListener('click',function(){
+    if(start == false){
+        gamestart();
+        start = true;
+        for(var i=1;i<5;i++){
+            s = document.querySelector('.b' + String(i)).classList.remove('wrong');
+            s = document.querySelector('.b' + String(i)).classList.remove('clicked');
+        }
+        name = document.querySelector('#name').value;
+        if(name == ''){
+            name = "NoName";
+        }
+        document.querySelector('.welname').innerHTML = "Welcome!, " + name;
+        document.querySelector('#name').style.display = 'none';
+        document.querySelector('.namebut').style.display = 'none';
+
+        
+    }
+})
 
 document.addEventListener('keypress',function(){
-    if(start == false){
+    if(start == false && play == true){
         gamestart();
         start = true;
         for(var i=1;i<17;i++){
@@ -37,10 +63,28 @@ function gamepattern(){
 
     if(buttons.length <=0){
         console.log('end');
-        levelob.innerHTML = "You Won!";
+        levelob.innerHTML = "You Won! press any key to restart, scored " + String(score) + " points";;
+        var keys = Object.keys(localStorage);
+        if(keys.includes(name)){
+            var value = parseInt(localStorage.getItem(name));
+            if(score > value){
+                localStorage.setItem(name,String(score));
+            }
+        }
+        else{
+            localStorage.setItem(name,String(score));
+        }
+        gamepat = [];
+        userpat = [];
+        buttons = ['1','2','3','4'];
+        start = false;
+        play = true;
+        score = -100;
+        level = 0;
     }
     else{
     level++;
+    score += 100;
     for(var i=1;i<17;i++){
         document.querySelector('.b'+ String(i)).disabled = true;
     }
@@ -108,12 +152,23 @@ function clickbut(key){
             document.querySelector('.b' + but).classList.add('clicked');
         }
         console.log('wrong');
-        infoob.innerHTML = 'Wrong! press any key to restart';
+        infoob.innerHTML = 'Wrong! press any key to restart, scored ' + String(score) + ' points' ;
         gamepat = [];
         userpat = [];
         start = false;
         buttons = ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16'];
-
+        var keys = Object.keys(localStorage);
+        if(keys.includes(name)){
+            var value = parseInt(localStorage.getItem(name));
+            if(score > value){
+                localStorage.setItem(name,String(score));
+            }
+        }
+        else{
+            localStorage.setItem(name,String(score));
+        }
+        play = true;
+        score = -100;
         level = 0;
     }
     }
