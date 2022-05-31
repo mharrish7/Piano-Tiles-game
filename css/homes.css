@@ -19,6 +19,17 @@ button{
     border-radius: 2rem;
     margin-left: 1rem;
     color: #371B58;
+    animation: btfadein 2s;
+}
+
+
+@keyframes btfadein {
+    from{
+        opacity: 0%;
+    }
+    to{
+        opacity: 100%;
+    }
 }
 
 .g2{
@@ -50,12 +61,12 @@ button{
 }
 
 .single{
-    margin-top: 5rem;
+    margin-top: 3rem;
     padding: 2rem;
 }
 
 .multi{
-    margin-top: 5rem;
+    margin-top: 1rem;
     padding: 2rem;
 }
 
@@ -68,4 +79,18 @@ button{
 .le:hover{
 
     background-color: #BDE6F1;
+}
+
+@media only screen and (max-width: 700px) {
+    h1{
+        font-size: 1.5rem;
+    }
+    button{
+        width: 5.5rem;
+        height: 3rem;
+        font-size: smaller;
+    }
+    body{
+        font-size: small;
+    }
 }
