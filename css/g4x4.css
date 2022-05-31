@@ -107,9 +107,55 @@ input:focus{
     margin-left: 1rem;
     color: white;
     margin-top: 1rem;
+    margin-left: auto;
+    margin-right: auto;
     border-color: white;
 }
 
 .namebut:hover{
     background-color: #4C3575;
+}
+.startbut{
+    background-color: #371B58;
+    transition: 0.3s;
+    height: 2.5rem;
+    width: 5rem;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: 'Montserrat', sans-serif;
+    font-size: large;
+    border-radius: 2rem;
+    margin-left: 1rem;
+    color: white;
+    margin-top: 1rem;
+    
+    border-color: white;
+}
+
+.startbut:hover{
+    background-color: #4C3575;
+}
+@media only screen and (max-width: 700px) {
+    .ho{
+        display: block;
+    }
+    h1{
+        padding-top: 4rem;
+    }
+    .main button{
+        width :3rem;
+        height: 3rem;
+    }
+    .g6{
+        width: 10rem;
+        height: 4rem;
+    }
+    .le{
+        width: 10rem;
+        height: 4rem;
+    }
+    body{
+        font-size: small;
+    }
+    
 }

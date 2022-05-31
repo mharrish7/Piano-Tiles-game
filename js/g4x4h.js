@@ -23,13 +23,16 @@ document.querySelector('.namebut').addEventListener('click',function(){
     if(start == false){
         gamestart();
         start = true;
-        for(var i=1;i<5;i++){
+        for(var i=1;i<17;i++){
             s = document.querySelector('.b' + String(i)).classList.remove('wrong');
             s = document.querySelector('.b' + String(i)).classList.remove('clicked');
         }
         name = document.querySelector('#name').value;
-        if(name == ''){
-            name = "NoName";
+        if (name == 'NoName') {
+            name = document.querySelector('#name').value;
+            if (name == '') {
+                name = "NoName";
+            }
         }
         document.querySelector('.welname').innerHTML = "Welcome!, " + name;
         document.querySelector('#name').style.display = 'none';
@@ -76,11 +79,13 @@ function gamepattern(){
         }
         gamepat = [];
         userpat = [];
-        buttons = ['1','2','3','4'];
+        buttons = ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16'];
         start = false;
         play = true;
         score = -100;
         level = 0;
+        document.querySelector('.namebut').style.display = 'block';
+
     }
     else{
     level++;
@@ -170,6 +175,8 @@ function clickbut(key){
         play = true;
         score = -100;
         level = 0;
+        document.querySelector('.namebut').style.display = 'block';
+
     }
     }
 }

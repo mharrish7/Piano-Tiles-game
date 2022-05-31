@@ -14,7 +14,7 @@ body{
 .main button{
     height: 4rem;
     width: 4rem;
-    border-radius: 1rem;
+    border-radius: 0rem;
     margin-top : 0.25rem;
     transition: 0.1s;
 
@@ -128,8 +128,38 @@ input:focus{
     color: white;
     margin-top: 1rem;
     border-color: white;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .namebut:hover{
     background-color: #4C3575;
+}
+
+@media only screen and (max-width: 700px) {
+    .ho{
+        display: block;
+    }
+    h1{
+        padding-top: 4rem;
+    }
+    .main button{
+        width :3rem;
+        height: 3rem;
+    }
+    body{
+        font-size: small;
+    }
+    .g6{
+        width: 10rem;
+        height: 4rem;
+    }
+    .g4{
+        width:10rem;
+        height: 4rem;
+    }
+    .le{
+        width: 10rem;
+        height: 4rem;
+    }
 }
