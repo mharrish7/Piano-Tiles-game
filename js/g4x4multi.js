@@ -10,17 +10,25 @@ var start = false;
 var play = false;
 var name = "NoName";
 var score = -100;
+var gameset = false;
+var gamepat2 = [];
+
+var startbut = document.querySelector('.startbut');
+startbut.style.display = 'none';
 
 for(var i=1;i<17;i++){
     document.querySelector('.b'+ String(i)).disabled = true;
 }
 
 function gamestart(){
-    gamepattern();
-    levelob.innerHTML = "Level : " + String(level);
+    // gamepattern();
+    levelob.innerHTML = "Set the sequence (the game starts immediately after last cell)";
 }
 document.querySelector('.namebut').addEventListener('click',function(){
     if(start == false){
+        for(var i=1;i<17;i++){
+            document.querySelector('.b'+ String(i)).disabled = false;
+        }
         gamestart();
         start = true;
         for(var i=1;i<17;i++){
@@ -37,6 +45,7 @@ document.querySelector('.namebut').addEventListener('click',function(){
         document.querySelector('.welname').innerHTML = "Welcome!, " + name;
         document.querySelector('#name').style.display = 'none';
         document.querySelector('.namebut').style.display = 'none';
+        infoob.innerHTML = '' ;
 
         
     }
@@ -47,9 +56,14 @@ document.addEventListener('keypress',function(){
         gamestart();
         start = true;
         for(var i=1;i<17;i++){
+            document.querySelector('.b'+ String(i)).disabled = false;
+        }
+        for(var i=1;i<17;i++){
             s = document.querySelector('.b' + String(i)).classList.remove('wrong');
             s = document.querySelector('.b' + String(i)).classList.remove('clicked');
         }
+        infoob.innerHTML = '' ;
+
     }
 })
 
@@ -64,7 +78,7 @@ for(var i=1;i<17;i++){
 function gamepattern(){
 
 
-    if(buttons.length <=0){
+    if(gamepat2.length <=0){
         console.log('end');
         levelob.innerHTML = "You Won! press any key to restart, scored " + String(score) + " points";;
         var keys = Object.keys(localStorage);
@@ -84,6 +98,8 @@ function gamepattern(){
         play = true;
         score = -100;
         level = 0;
+        gameset = false;
+        gamepat2 = [];
         document.querySelector('.namebut').style.display = 'block';
 
     }
@@ -95,9 +111,8 @@ function gamepattern(){
     }
     infoob.innerHTML = "Wait!";
     levelob.innerHTML = "Level : " + String(level);
-    rand = Math.floor(Math.random() * buttons.length);
-    gamepat.push(buttons[rand]);
-    buttons.splice(rand,1);
+    // rand = Math.floor(Math.random() * buttons.length);
+    gamepat.push(gamepat2.shift());
     setTimeout(function(){
         console.log('new');
         for(but in gamepat){
@@ -133,7 +148,7 @@ function checkbut(but){
 }
 
 function clickbut(key){
-
+    if(gameset == true){
     if(userpat.includes(key)){
         console.log('pressed before');
     }
@@ -142,7 +157,7 @@ function clickbut(key){
     var current = userpat.length - 1;
     console.log(userpat);
     console.log(gamepat);
-    if (gamepat.includes(userpat[current])){
+    if (userpat[current] == gamepat[current]){
         if (userpat.length === gamepat.length){
             userpat = [];
             setTimeout(gamepattern(),1000);
@@ -175,16 +190,52 @@ function clickbut(key){
         play = true;
         score = -100;
         level = 0;
+        gameset = false;
+        gamepat2 = [];
         document.querySelector('.namebut').style.display = 'block';
 
     }
     }
 }
+    else{
+
+        if(gamepat2.includes(key)){
+            console.log('pressed');
+        }
+        else{
+            gamepat2.push(key);
+            document.querySelector('.b' + key).classList.add('clicked');
+        }
+
+        if(gamepat2.length == buttons.length){
+            ready();
+        }
+    }
+}
+
+function ready(){
+    for(var i=1;i<17;i++){
+        document.querySelector('.b'+ String(i)).classList.remove('clicked');
+    }
+    gameset = true;
+    startbut.style.display = 'inline';
+    for(var i=1;i<37;i++){
+        document.querySelector('.b'+ String(i)).disabled = true;
+    };
+}
+
+startbut.addEventListener('click',function(){
+    gamepattern();
+    this.style.display = 'none';
+})
 
 function clickanim(but){
+    if(gameset == true){
     var c = document.querySelector('.' + but);
     c.classList.add('clicked');
     setTimeout( function(){
         c.classList.remove('clicked') 
     },100);
 }
+}
+
