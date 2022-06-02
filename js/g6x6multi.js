@@ -13,6 +13,11 @@ var score = -100;
 var gameset = false;
 var gamepat2 = [];
 
+const a3 = new Audio('sounds/pop.wav');
+const cor = new Audio('sounds/correct.wav');
+const wro = new Audio('sounds/wrong.wav');
+const nex = new Audio('sounds/next.wav');
+
 for(var i=1;i<37;i++){
     document.querySelector('.b'+ String(i)).disabled = true;
 }
@@ -21,7 +26,7 @@ startbut.style.display = 'none';
 
 function gamestart(){
     // gamepattern();
-    levelob.innerHTML = "Set the sequence (the game starts immediately after last cell)";
+    levelob.innerHTML = "Set the sequence";
 }
 document.querySelector('.namebut').addEventListener('click',function(){
     if(start == false){
@@ -41,7 +46,7 @@ document.querySelector('.namebut').addEventListener('click',function(){
                 name = "NoName";
             }
         }
-        document.querySelector('.welname').innerHTML = "Welcome!, " + name;
+        document.querySelector('.welname').innerHTML = "let's Go 🔥!, " + name;
         document.querySelector('#name').style.display = 'none';
         document.querySelector('.namebut').style.display = 'none';
         infoob.innerHTML = '' ;
@@ -62,7 +67,7 @@ document.addEventListener('keypress',function(){
             s = document.querySelector('.b' + String(i)).classList.remove('clicked');
         }
         infoob.innerHTML = '' ;
-
+        a3.play();
     }
 })
 
@@ -71,6 +76,8 @@ for(var i=1;i<37;i++){
     document.querySelector('.b'+ String(i)).addEventListener('click',function(){
         clickanim(this.getAttribute('class'));
         clickbut(this.innerHTML);
+        a3.play();
+
     });
 }
 
@@ -96,6 +103,7 @@ function gamepattern(){
         start = false;
         play = true;
         score = -100;
+        nex.play();
         level = 0;
         gameset = false;
         document.querySelector('.namebut').style.display = 'block';
@@ -104,6 +112,7 @@ function gamepattern(){
     }
     else{
     level++;
+    cor.play();
     score += 100;
     for(var i=1;i<37;i++){
         document.querySelector('.b'+ String(i)).disabled = true;
@@ -174,6 +183,7 @@ function clickbut(key){
         infoob.innerHTML = 'Wrong! press any key to restart, scored ' + String(score) + ' points' ;
         gamepat = [];
         userpat = [];
+        wro.play();
         start = false;
         buttons = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31', '32', '33', '34', '35', '36'];
         var keys = Object.keys(localStorage);

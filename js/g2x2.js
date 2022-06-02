@@ -10,6 +10,14 @@ var name = "NoName";
 var score = -100;
 
 
+const a3 = new Audio('sounds/pop.wav');
+const cor = new Audio('sounds/correct.wav');
+const wro = new Audio('sounds/wrong.wav');
+const nex = new Audio('sounds/next.wav');
+
+
+
+
 for (var i = 1; i < 5; i++) {
     document.querySelector('.b' + String(i)).disabled = true;
 }
@@ -34,7 +42,7 @@ document.querySelector('.namebut').addEventListener('click', function () {
             }
         }
 
-        document.querySelector('.welname').innerHTML = "Welcome!, " + name;
+        document.querySelector('.welname').innerHTML = "let's Go 🔥!, " + name;
         document.querySelector('#name').style.display = 'none';
         document.querySelector('.namebut').style.display = 'none';
 
@@ -59,6 +67,7 @@ for (var i = 1; i < 5; i++) {
     document.querySelector('.b' + String(i)).addEventListener('click', function () {
         clickanim(this.getAttribute('class'));
         clickbut(this.innerHTML);
+        a3.play();
     });
 }
 
@@ -68,6 +77,7 @@ function gamepattern() {
     if (buttons.length <= 0) {
         console.log('end');
         levelob.innerHTML = "You Won! press any key to restart, scored " + String(score) + " points";
+        nex.play();
         var keys = Object.keys(localStorage);
         if (keys.includes(name)) {
             var value = parseInt(localStorage.getItem(name));
@@ -88,6 +98,7 @@ function gamepattern() {
 
     } else {
         level++;
+        cor.play();
         score += 100;
         for (var i = 1; i < 5; i++) {
             document.querySelector('.b' + String(i)).disabled = true;
@@ -155,6 +166,7 @@ function clickbut(key) {
             }
             infoob.innerHTML = 'Wrong! press any key to restart, scored ' + String(score) + ' points';
             gamepat = [];
+            wro.play();
             userpat = [];
             buttons = ['1', '2', '3', '4'];
             start = false;

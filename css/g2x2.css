@@ -14,7 +14,7 @@ body{
 .main button{
     height: 4rem;
     width: 4rem;
-    border-radius: 0rem;
+    border-radius: 1rem;
     margin-top : 0.25rem;
     transition: 0.1s;
 
@@ -54,8 +54,8 @@ body{
 
 .clicked{
     background-color: #B4FF9F;
-
 }
+
 
 .wrong{
     background-color: red;

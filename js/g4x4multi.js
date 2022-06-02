@@ -13,6 +13,11 @@ var score = -100;
 var gameset = false;
 var gamepat2 = [];
 
+const a3 = new Audio('sounds/pop.wav');
+const cor = new Audio('sounds/correct.wav');
+const wro = new Audio('sounds/wrong.wav');
+const nex = new Audio('sounds/next.wav');
+
 var startbut = document.querySelector('.startbut');
 startbut.style.display = 'none';
 
@@ -22,7 +27,7 @@ for(var i=1;i<17;i++){
 
 function gamestart(){
     // gamepattern();
-    levelob.innerHTML = "Set the sequence (the game starts immediately after last cell)";
+    levelob.innerHTML = "Set the sequence ";
 }
 document.querySelector('.namebut').addEventListener('click',function(){
     if(start == false){
@@ -42,7 +47,7 @@ document.querySelector('.namebut').addEventListener('click',function(){
                 name = "NoName";
             }
         }
-        document.querySelector('.welname').innerHTML = "Welcome!, " + name;
+        document.querySelector('.welname').innerHTML = "let's Go 🔥!, " + name;
         document.querySelector('#name').style.display = 'none';
         document.querySelector('.namebut').style.display = 'none';
         infoob.innerHTML = '' ;
@@ -63,7 +68,7 @@ document.addEventListener('keypress',function(){
             s = document.querySelector('.b' + String(i)).classList.remove('clicked');
         }
         infoob.innerHTML = '' ;
-
+        a3.play();
     }
 })
 
@@ -72,6 +77,8 @@ for(var i=1;i<17;i++){
     document.querySelector('.b'+ String(i)).addEventListener('click',function(){
         clickanim(this.getAttribute('class'));
         clickbut(this.innerHTML);
+        a3.play();
+
     });
 }
 
@@ -101,11 +108,13 @@ function gamepattern(){
         gameset = false;
         gamepat2 = [];
         document.querySelector('.namebut').style.display = 'block';
+        nex.play();
 
     }
     else{
     level++;
     score += 100;
+    cor.play();
     for(var i=1;i<17;i++){
         document.querySelector('.b'+ String(i)).disabled = true;
     }
@@ -175,6 +184,7 @@ function clickbut(key){
         infoob.innerHTML = 'Wrong! press any key to restart, scored ' + String(score) + ' points' ;
         gamepat = [];
         userpat = [];
+        wro.play();
         start = false;
         buttons = ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16'];
         var keys = Object.keys(localStorage);

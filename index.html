@@ -13,7 +13,7 @@
 </head>
 
 <body>
-    <h1>Welcome to the Game !</h1>
+    <h1>🎶🎵 Piano Tiles! 🎶🎵</h1>
 
     <div class="single">
         <h2> Single Player Mode! </h2>
@@ -38,6 +38,15 @@
 
     </div>
 
+    <script>
+        document.querySelector('h1').addEventListener('click',function(){
+            const a1 = new Audio('sounds/next.wav');
+            a1.play();
+            setTimeout( function(){
+                alert("Thanks for playing my game 😁, press F12. Have fun!");
+            } ,1000);
+        })
+    </script>
 
 
 </body>
